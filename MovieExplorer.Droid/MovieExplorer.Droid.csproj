@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Detail.axml" />
@@ -74,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\movie.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MovieExplorer.Client\MovieExplorer.Client.csproj">
+      <Project>{2f212524-76ea-4b17-b69f-4fd856ad191f}</Project>
+      <Name>MovieExplorer.Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

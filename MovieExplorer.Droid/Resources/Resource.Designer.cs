@@ -64,7 +64,7 @@ namespace MovieExplorer.Droid
 		{
 			
 			// aapt resource value: 0x7f050005
-			public const int MyButton = 2131034117;
+			public const int SearchButton = 2131034117;
 			
 			// aapt resource value: 0x7f050004
 			public const int SearchQuery = 2131034116;

@@ -15,7 +15,7 @@ public final class R {
         public static final int movie=0x7f020001;
     }
     public static final class id {
-        public static final int MyButton=0x7f050005;
+        public static final int SearchButton=0x7f050005;
         public static final int SearchQuery=0x7f050004;
         public static final int movieImage=0x7f050000;
         public static final int myButton=0x7f050001;
