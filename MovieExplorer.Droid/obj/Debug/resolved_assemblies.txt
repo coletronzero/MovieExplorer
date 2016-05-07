@@ -1,0 +1,9 @@
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\MovieExplorer.Droid.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\Mono.Android.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\mscorlib.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\System.Core.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\System.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\System.Xml.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\System.Xml.Linq.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\System.Runtime.Serialization.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Debug\assemblies\System.ServiceModel.Internals.dll

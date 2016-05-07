@@ -1,0 +1,12 @@
+MovieExplorer.Droid.DetailActivity, MovieExplorer.Droid;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.DetailActivity
+MovieExplorer.Droid.DetailActivity, MovieExplorer.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.DetailActivity
+MovieExplorer.Droid.DetailActivity;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.DetailActivity
+movieexplorer.droid.DetailActivity;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.DetailActivity
+MovieExplorer.Droid.MainActivity, MovieExplorer.Droid;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MainActivity
+MovieExplorer.Droid.MainActivity, MovieExplorer.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MainActivity
+MovieExplorer.Droid.MainActivity;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MainActivity
+movieexplorer.droid.MainActivity;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MainActivity
+MovieExplorer.Droid.MovieImageView, MovieExplorer.Droid;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MovieImageView
+MovieExplorer.Droid.MovieImageView, MovieExplorer.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MovieImageView
+MovieExplorer.Droid.MovieImageView;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MovieImageView
+movieexplorer.droid.MovieImageView;md593f7ca8c05f1ba9cf3c0d6a4162a7c2a.MovieImageView
