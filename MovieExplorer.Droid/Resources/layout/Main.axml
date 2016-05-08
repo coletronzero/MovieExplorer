@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+    <!--<LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
@@ -25,60 +25,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Search" />
-        </LinearLayout>
+        </LinearLayout>-->
         <TextView
             android:text="@string/TopRated"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <HorizontalScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:scrollbars="none"
-            android:fillViewport="false"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/topRated_recyclerView"
+            android:scrollbars="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp">
-            <LinearLayout
-                android:id="@+id/top_rated_movies"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </HorizontalScrollView>
+            android:layout_marginBottom="10dp" />
         <TextView
             android:text="@string/Popular"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <HorizontalScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:scrollbars="none"
-            android:fillViewport="false"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/popular_recyclerView"
+            android:scrollbars="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp">
-            <LinearLayout
-                android:id="@+id/popular_movies"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </HorizontalScrollView>
+            android:layout_marginBottom="10dp" />
         <TextView
             android:text="@string/NowPlaying"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <HorizontalScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:scrollbars="none"
-            android:fillViewport="false"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/nowPlaying_recyclerView"
+            android:scrollbars="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp">
-            <LinearLayout
-                android:id="@+id/now_playing_movies"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </HorizontalScrollView>
+            android:layout_marginBottom="10dp" />
     </LinearLayout>
 </ScrollView>

@@ -47,9 +47,19 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DownloadedDrawable.cs" />
+    <Compile Include="Controls\MovieItemViewHolder.cs" />
+    <Compile Include="Controls\MovieRecyclerViewAdapter.cs" />
     <Compile Include="DetailActivity.cs" />
+    <Compile Include="Helpers\BitmapDownloaderTask.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MovieImageView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -57,9 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Detail.axml" />
+    <AndroidResource Include="Resources\layout\MovieCell.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

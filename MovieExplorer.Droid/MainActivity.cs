@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using MovieExplorer.Client;
 using MovieExplorer.Client.ViewModels;
 using System.Collections.Generic;
+using Android.Support.V7.Widget;
+using MovieExplorer.Droid.Controls;
 
 namespace MovieExplorer.Droid
 {
@@ -20,153 +22,74 @@ namespace MovieExplorer.Droid
     {
         private HomeViewModel _viewModel;
 
-        private LinearLayout _topRatedMoviesLayout;
-        private LinearLayout _popularMoviesLayout;
-        private LinearLayout _nowPlayingMoviesLayout;
+        private RecyclerView _topRatedRecyclerView;
+        private RecyclerView _popularRecyclerView;
+        private RecyclerView _nowPlayingRecyclerView;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            Button btnSearch = FindViewById<Button>(Resource.Id.SearchButton);
-            _topRatedMoviesLayout = FindViewById<LinearLayout>(Resource.Id.top_rated_movies);
-            _popularMoviesLayout = FindViewById<LinearLayout>(Resource.Id.popular_movies);
-            _nowPlayingMoviesLayout = FindViewById<LinearLayout>(Resource.Id.now_playing_movies);
+            //Button btnSearch = FindViewById<Button>(Resource.Id.SearchButton);
 
             ApplicationMaster.Init();
 
             _viewModel = ApplicationMaster.ViewModels.Home;
 
-            _viewModel.AddTopRatedMoviesToView = AddTopRatedMovies;
-            _viewModel.AddPopularMoviesToView = AddPopularMovies;
-            _viewModel.AddNowPlayingMoviesToView = AddNowPlayingMovies;
+            // Create a reference to our RecyclerView and set the layout manager;
+            _topRatedRecyclerView = FindViewById<RecyclerView>(Resource.Id.topRated_recyclerView);
+            _topRatedRecyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
 
-            InitializeMoviesAsync();
+            // Get our movie data.
+            var movies = await _viewModel.GetTopRatedMoviesAsync();
+
+            // Create the adapter for the RecyclerView with movie data, and set
+            // the adapter. Also, wire an event handler for when the user taps on each
+            // individual item.
+            MovieRecyclerViewAdapter topRatedAdapter = new MovieRecyclerViewAdapter(movies, this.Resources);
+            topRatedAdapter.ItemClick += OnItemClick;
+            _topRatedRecyclerView.SetAdapter(topRatedAdapter);
+
+            // Popular List
+            _popularRecyclerView = FindViewById<RecyclerView>(Resource.Id.popular_recyclerView);
+            _popularRecyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
+
+            var popularMovies = await _viewModel.GetPopularMoviesAsync();
+
+            MovieRecyclerViewAdapter popularAdapter = new MovieRecyclerViewAdapter(popularMovies, this.Resources);
+            popularAdapter.ItemClick += OnItemClick;
+            _popularRecyclerView.SetAdapter(popularAdapter);
+
+            // Now Playing List
+            _nowPlayingRecyclerView = FindViewById<RecyclerView>(Resource.Id.nowPlaying_recyclerView);
+            _nowPlayingRecyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
+
+            var nowPlayingMovies = await _viewModel.GetNowPlayingMoviesAsync();
+
+            MovieRecyclerViewAdapter nowPlayingAdapter = new MovieRecyclerViewAdapter(nowPlayingMovies, this.Resources);
+            nowPlayingAdapter.ItemClick += OnItemClick;
+            _nowPlayingRecyclerView.SetAdapter(nowPlayingAdapter);
         }
 
-        private async Task InitializeMoviesAsync()
+        private void OnItemClick(object sender, int e)
         {
-            await _viewModel.InitializeMovieListsAsync();
-        }
-
-        private async void AddTopRatedMovies(List<Client.Models.Movie> movies)
-        {
-            if(movies != null && movies.Count > 0)
-            {
-                foreach (var movie in movies)
-                {
-                    if(movie != null)
-                    {
-                        MovieImageView imageView = new MovieImageView(this);
-                        imageView.MovieId = movie.Id;
-                        imageView.SetImageResource(Resource.Drawable.movie);
-
-                        Bitmap moviePoster = await GetImageBitmapFromUrl("http://image.tmdb.org/t/p/w500" + movie.PosterPath);
-                        imageView.SetImageBitmap(moviePoster);
-
-                        LinearLayout.LayoutParams imgViewParams = new LinearLayout.LayoutParams(300, 400);
-                        imgViewParams.SetMargins(0, 0, 20, 0);
-                        imageView.LayoutParameters = imgViewParams;
-                        imageView.SetScaleType(Android.Widget.ImageView.ScaleType.CenterCrop);
-
-                        imageView.Click += imageView_Click;
-
-                        _topRatedMoviesLayout.AddView(imageView);
-                    }
-                }
-            }
-        }
-
-        private async void AddPopularMovies(List<Client.Models.Movie> movies)
-        {
-            if (movies != null && movies.Count > 0)
-            {
-                foreach (var movie in movies)
-                {
-                    if(movie != null)
-                    {
-                        MovieImageView imageView = new MovieImageView(this);
-                        imageView.MovieId = movie.Id;
-                        imageView.SetImageResource(Resource.Drawable.movie);
-
-                        Bitmap moviePoster = await GetImageBitmapFromUrl("http://image.tmdb.org/t/p/w500" + movie.PosterPath);
-                        imageView.SetImageBitmap(moviePoster);
-
-                        LinearLayout.LayoutParams imgViewParams = new LinearLayout.LayoutParams(300, 400);
-                        imgViewParams.SetMargins(0, 0, 20, 0);
-                        imageView.LayoutParameters = imgViewParams;
-                        imageView.SetScaleType(Android.Widget.ImageView.ScaleType.CenterCrop);
-
-                        imageView.Click += imageView_Click;
-
-                        _popularMoviesLayout.AddView(imageView);
-                    }
-                }
-            }
-        }
-
-        private async void AddNowPlayingMovies(List<Client.Models.Movie> movies)
-        {
-            if (movies != null && movies.Count > 0)
-            {
-                foreach (var movie in movies)
-                {
-                    if(movie != null)
-                    {
-                        MovieImageView imageView = new MovieImageView(this);
-                        imageView.MovieId = movie.Id;
-                        imageView.SetImageResource(Resource.Drawable.movie);
-
-                        Bitmap moviePoster = await GetImageBitmapFromUrl("http://image.tmdb.org/t/p/w500" + movie.PosterPath);
-                        imageView.SetImageBitmap(moviePoster);
-
-                        LinearLayout.LayoutParams imgViewParams = new LinearLayout.LayoutParams(300, 400);
-                        imgViewParams.SetMargins(0, 0, 20, 0);
-                        imageView.LayoutParameters = imgViewParams;
-                        imageView.SetScaleType(Android.Widget.ImageView.ScaleType.CenterCrop);
-
-                        imageView.Click += imageView_Click;
-
-                        _nowPlayingMoviesLayout.AddView(imageView);
-                    }
-                }
-            }
-        }
-
-        private async Task<Bitmap> GetImageBitmapFromUrl(string url)
-        {
-            Bitmap imageBitmap = null;
-
             try
             {
-                using (var webClient = new WebClient())
+                MovieRecyclerViewAdapter view = (MovieRecyclerViewAdapter)sender;
+                if (view != null)
                 {
-                    var imageBytes = webClient.DownloadData(url);
-                    if (imageBytes != null && imageBytes.Length > 0)
-                    {
-                        imageBitmap = await BitmapFactory.DecodeByteArrayAsync(imageBytes, 0, imageBytes.Length);
-                    }
+                    // TODO: Select Movie in View Model that Details View Binds to
+
+                    var intent = new Intent(this, typeof(DetailActivity));
+                    StartActivity(intent);
                 }
             }
             catch (Exception ex)
             {
-                var test = ex;
-            }
-
-            return imageBitmap;
-        }
-
-        void imageView_Click(object sender, EventArgs e)
-        {
-            MovieImageView view = (MovieImageView)sender;
-            if (view != null)
-            {
-                var intent = new Intent(this, typeof(DetailActivity));
-                intent.PutExtra("movie_id", view.MovieId);
-                StartActivity(intent);
+                // TODO: Log Exception
             }
         }
     }

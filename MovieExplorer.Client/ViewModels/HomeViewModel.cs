@@ -13,45 +13,37 @@ namespace MovieExplorer.Client.ViewModels
         {
         }
 
-        public Action<List<Movie>> AddTopRatedMoviesToView { get; set; }
-        public Action<List<Movie>> AddPopularMoviesToView { get; set; }
-        public Action<List<Movie>> AddNowPlayingMoviesToView { get; set; }
-
-        public async Task InitializeMovieListsAsync()
+        public async Task<List<Movie>> GetTopRatedMoviesAsync()
         {
+            List<Movie> movies = new List<Movie>();
             var topRatedMoviesResponse = await ApplicationMaster.MovieClient.GetTopRatedMoviesAsync();
-            if(topRatedMoviesResponse.IsOk)
+            if (topRatedMoviesResponse.IsOk)
             {
-                TopRatedMovies = topRatedMoviesResponse.Body.Results;
-                if(AddTopRatedMoviesToView != null)
-                {
-                    AddTopRatedMoviesToView(TopRatedMovies);
-                }
+                movies = topRatedMoviesResponse.Body.Results;
             }
-            var popularMoviesResponse = await ApplicationMaster.MovieClient.GetPopularMoviesAsync();
-            if (popularMoviesResponse.IsOk)
-            {
-                PopularMovies = popularMoviesResponse.Body.Results;
-                if (AddPopularMoviesToView != null)
-                {
-                    AddPopularMoviesToView(PopularMovies);
-                }
-            }
-            var nowPlayingMoviesResponse = await ApplicationMaster.MovieClient.GetNowPlayingMoviesAsync();
-            if (nowPlayingMoviesResponse.IsOk)
-            {
-                NowPlayingMovies = nowPlayingMoviesResponse.Body.Results;
-                if (AddNowPlayingMoviesToView != null)
-                {
-                    AddNowPlayingMoviesToView(NowPlayingMovies);
-                }
-            }
+            return movies;
         }
 
-        public List<Movie> TopRatedMovies { get; private set; }
+        public async Task<List<Movie>> GetPopularMoviesAsync()
+        {
+            List<Movie> movies = new List<Movie>();
+            var topRatedMoviesResponse = await ApplicationMaster.MovieClient.GetPopularMoviesAsync();
+            if (topRatedMoviesResponse.IsOk)
+            {
+                movies = topRatedMoviesResponse.Body.Results;
+            }
+            return movies;
+        }
 
-        public List<Movie> PopularMovies { get; private set; }
-
-        public List<Movie> NowPlayingMovies { get; private set; }
+        public async Task<List<Movie>> GetNowPlayingMoviesAsync()
+        {
+            List<Movie> movies = new List<Movie>();
+            var topRatedMoviesResponse = await ApplicationMaster.MovieClient.GetNowPlayingMoviesAsync();
+            if (topRatedMoviesResponse.IsOk)
+            {
+                movies = topRatedMoviesResponse.Body.Results;
+            }
+            return movies;
+        }
     }
 }
