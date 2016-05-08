@@ -1,11 +1,10 @@
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\MovieExplorer.Droid.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\Mono.Android.dll
-C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\MovieSharp.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\MovieExplorer.Client.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\mscorlib.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Core.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Xml.dll
-C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Xml.Linq.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Diagnostics.Tracing.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Reflection.Emit.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Reflection.Emit.ILGeneration.dll
@@ -16,6 +15,5 @@ C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\as
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.ServiceModel.Internals.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.Net.Http.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\Newtonsoft.Json.dll
-C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\Microsoft.CSharp.dll
-C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\Mono.CSharp.dll
+C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\Microsoft.Threading.Tasks.dll
 C:\Data\Programs\MovieExplorer.Client\MovieExplorer.Droid\obj\Release\android\assets\System.ServiceModel.dll

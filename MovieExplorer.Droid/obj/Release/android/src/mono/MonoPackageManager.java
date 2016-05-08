@@ -80,7 +80,7 @@ public class MonoPackageManager {
 class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		"MovieExplorer.Droid.dll",
-		"MovieSharp.dll",
+		"MovieExplorer.Client.dll",
 		"System.Diagnostics.Tracing.dll",
 		"System.Reflection.Emit.dll",
 		"System.Reflection.Emit.ILGeneration.dll",
@@ -89,6 +89,7 @@ class MonoPackageManager_Resources {
 		"System.Threading.Timer.dll",
 		"System.ServiceModel.Internals.dll",
 		"Newtonsoft.Json.dll",
+		"Microsoft.Threading.Tasks.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};
