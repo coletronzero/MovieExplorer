@@ -1,7 +1,6 @@
 *.suo
-*.user
+*.user*
 _ReSharper.*
 bin
 obj
 packages
-/*.suo
