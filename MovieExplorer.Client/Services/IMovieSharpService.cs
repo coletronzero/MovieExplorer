@@ -9,7 +9,7 @@ namespace MovieExplorer.Client.Services
      * https://github.com/lerocha/moviesharp
      */
 
-	public interface IMovieSharpClient
+	public interface IMovieSharpService
 	{
 		BaseResponse<Configuration> GetConfiguration();
 

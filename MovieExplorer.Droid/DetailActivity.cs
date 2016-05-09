@@ -8,19 +8,44 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using MvvmCross.Droid.Views;
+using MovieExplorer.Droid.Helpers;
+using MovieExplorer.Droid.Controls;
+using MovieExplorer.Client;
+using Android.Graphics;
+using MovieExplorer.Client.ViewModels;
 
 namespace MovieExplorer.Droid
 {
     [Activity(Label = "DetailActivity")]
-    public class DetailActivity : Activity
+    public class DetailActivity : MvxActivity
     {
+        protected DetailViewModel _viewModel
+        {
+            get { return ViewModel as DetailViewModel; }
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            try
+            {
+                base.OnCreate(savedInstanceState);
+                SetContentView(Resource.Layout.Detail);
+            }
+            catch(Exception ex)
+            {
+                var test = ex;
+            }
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Detail);
-
+            if(_viewModel.SelectedMovie != null)
+            {
+                ImageView movieImageView = FindViewById<ImageView>(Resource.Id.movieImage);
+                var task = new BitmapDownloaderTask(movieImageView);
+                movieImageView.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
+                movieImageView.SetMinimumHeight(300);
+                task.Execute("http://image.tmdb.org/t/p/w500" + _viewModel.SelectedMovie.PosterPath);
+            }
+            
             LinearLayout similarLayout = FindViewById<LinearLayout>(Resource.Id.similar_movies);
 
             for (int i = 0; i < 10; i++)

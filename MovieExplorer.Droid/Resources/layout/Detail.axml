@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:rowCount="9"
@@ -11,18 +12,17 @@
         android:layout_height="150dp"
         android:layout_marginRight="10dp"
         android:id="@+id/movieImage"
-        android:src="@drawable/movie"
         android:scaleType="fitCenter"
         android:layout_row="0"
         android:layout_column="0"
         android:layout_rowSpan="6" />
     <TextView
-        android:text="Star Wars: The Force Awakens"
+        local:MvxBind="Text Title"
         android:textSize="20dip"
         android:layout_row="0"
         android:layout_column="1" />
     <TextView
-        android:text="Release Date: 12/18/2015"
+        local:MvxBind="Text ReleaseDate"
         android:textSize="14dip"
         android:layout_row="1"
         android:layout_column="1" />
@@ -32,7 +32,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp" />
     <TextView
-        android:text="(from 2683 votes)"
+        local:MvxBind="Text Votes"
         android:textSize="10dip"
         android:layout_row="3"
         android:layout_column="1" />
@@ -47,7 +47,7 @@
         android:layout_row="5"
         android:layout_column="1" />
     <TextView
-        android:text="Thirty years after defeating the Galactic Emprie, Han Solo and ..."
+        local:MvxBind="Text Overview"
         android:textSize="14dip"
         android:layout_row="6"
         android:layout_column="0"

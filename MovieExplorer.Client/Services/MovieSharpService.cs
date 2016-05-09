@@ -14,19 +14,19 @@ namespace MovieExplorer.Client.Services
      * https://github.com/lerocha/moviesharp
      */
 
-    public class MovieSharpClient : IMovieSharpClient
+    public class MovieSharpService : IMovieSharpService
 	{
 		protected const string DefaultBaseUrl = "http://api.themoviedb.org";
 
-		public string ApiKey { get; private set; }
+		//public string ApiKey { get; private set; }
+        private const string API_KEY = "d228489ec1663d555aced8667d465766";
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MovieSharpClient" /> class.
-		/// </summary>
-		/// <param name="apiKey">The API key.</param>
-		public MovieSharpClient(string apiKey)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MovieSharpService" /> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        public MovieSharpService()
 		{
-			ApiKey = apiKey;
 		}
 
 		public BaseResponse<Configuration> GetConfiguration()
@@ -258,9 +258,9 @@ namespace MovieExplorer.Client.Services
 			}
 
 			if (resource.Contains("?")) {
-				builder.AppendFormat("&api_key={0}", ApiKey);
+				builder.AppendFormat("&api_key={0}", API_KEY);
 			} else {
-				builder.AppendFormat("?api_key={0}", ApiKey);
+				builder.AppendFormat("?api_key={0}", API_KEY);
 			}
 
 			string url = builder.ToString();

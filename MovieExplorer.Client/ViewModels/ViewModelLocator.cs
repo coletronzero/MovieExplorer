@@ -12,17 +12,30 @@ namespace MovieExplorer.Client.ViewModels
 
         }
 
-        private static HomeViewModel _home;
-        public HomeViewModel Home
-        {
-            get
-            {
-                if(_home == null)
-                {
-                    _home = new HomeViewModel();
-                }
-                return _home;
-            }
-        }
+        //private static HomeViewModel _home;
+        //public HomeViewModel Home
+        //{
+        //    get
+        //    {
+        //        if(_home == null)
+        //        {
+        //            _home = new HomeViewModel(ApplicationMaster.MovieClient);
+        //        }
+        //        return _home;
+        //    }
+        //}
+
+        //private static DetailViewModel _detail;
+        //public DetailViewModel Detail
+        //{
+        //    get
+        //    {
+        //        if (_detail == null)
+        //        {
+        //            _detail = new DetailViewModel(ApplicationMaster.MovieClient);
+        //        }
+        //        return _detail;
+        //    }
+        //}
     }
 }

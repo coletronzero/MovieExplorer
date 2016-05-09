@@ -1,4 +1,7 @@
+using MovieExplorer.Client.Services;
+using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
+using MvvmCross.Plugins.Messenger;
 
 namespace MovieExplorer.Client
 {
@@ -11,7 +14,7 @@ namespace MovieExplorer.Client
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterAppStart<ViewModels.FirstViewModel>();
+            RegisterAppStart<ViewModels.MainViewModel>();
         }
     }
 }

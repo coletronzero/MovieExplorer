@@ -24,6 +24,7 @@ namespace MovieExplorer.Droid.Controls
         //Create an Event so that our our clients can act when a user clicks
         //on each individual item.
         public event EventHandler<int> ItemClick;
+        public int MovieID { get; private set; }
 
         private List<MovieExplorer.Client.Models.Movie> _movies;
         //private readonly ImageManager _imageManager;
@@ -60,11 +61,13 @@ namespace MovieExplorer.Droid.Controls
         //Must override, this is the important one.  This method is used to
         //bind our current data to your view holder.  Think of this as the equivalent
         //of GetView for regular Adapters.
-        public override async void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var viewHolder = holder as CrewMemberItemViewHolder;
 
             var currentMovie = _movies[position];
+
+            MovieID = currentMovie.Id;
 
             //Bind our data from our data source to our View References
             viewHolder.MovieName.Text = currentMovie.Title;
@@ -107,7 +110,7 @@ namespace MovieExplorer.Droid.Controls
         {
             if (ItemClick != null)
             {
-                ItemClick(this, position);
+                ItemClick(this, _movies[position].Id);
             }
         }
 

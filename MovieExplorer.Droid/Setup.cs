@@ -2,6 +2,7 @@ using Android.Content;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
+using MovieExplorer.Client;
 
 namespace MovieExplorer.Droid
 {
@@ -9,11 +10,12 @@ namespace MovieExplorer.Droid
     {
         public Setup(Context applicationContext) : base(applicationContext)
         {
+
         }
 
         protected override IMvxApplication CreateApp()
         {
-            return new Core.App();
+            return new App();
         }
 
         protected override IMvxTrace CreateDebugTrace()

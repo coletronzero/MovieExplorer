@@ -14,13 +14,18 @@ using MovieExplorer.Client.ViewModels;
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using MovieExplorer.Droid.Controls;
+using MvvmCross.Droid.Views;
 
 namespace MovieExplorer.Droid
 {
-    [Activity(Label = "MovieExplorer", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    [Activity(Label = "MovieExplorer")]
+    public class MainActivity : MvxActivity
     {
-        private HomeViewModel _viewModel;
+        //private HomeViewModel _viewModel;
+        protected MainViewModel _viewModel
+        {
+            get { return ViewModel as MainViewModel; }
+        }
 
         private RecyclerView _topRatedRecyclerView;
         private RecyclerView _popularRecyclerView;
@@ -28,16 +33,19 @@ namespace MovieExplorer.Droid
 
         protected override async void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            try
+            {
+                base.OnCreate(bundle);
+                SetContentView(Resource.Layout.Main);
+            }
+            catch (Exception ex)
+            {
+                var test = ex;
+            }
 
             //Button btnSearch = FindViewById<Button>(Resource.Id.SearchButton);
 
             ApplicationMaster.Init();
-
-            _viewModel = ApplicationMaster.ViewModels.Home;
 
             // Create a reference to our RecyclerView and set the layout manager;
             _topRatedRecyclerView = FindViewById<RecyclerView>(Resource.Id.topRated_recyclerView);
@@ -50,7 +58,7 @@ namespace MovieExplorer.Droid
             // the adapter. Also, wire an event handler for when the user taps on each
             // individual item.
             MovieRecyclerViewAdapter topRatedAdapter = new MovieRecyclerViewAdapter(movies, this.Resources);
-            topRatedAdapter.ItemClick += OnItemClick;
+            topRatedAdapter.ItemClick += OnTopRatedItemClick;
             _topRatedRecyclerView.SetAdapter(topRatedAdapter);
 
             // Popular List
@@ -60,7 +68,7 @@ namespace MovieExplorer.Droid
             var popularMovies = await _viewModel.GetPopularMoviesAsync();
 
             MovieRecyclerViewAdapter popularAdapter = new MovieRecyclerViewAdapter(popularMovies, this.Resources);
-            popularAdapter.ItemClick += OnItemClick;
+            popularAdapter.ItemClick += OnPopularItemClick;
             _popularRecyclerView.SetAdapter(popularAdapter);
 
             // Now Playing List
@@ -70,11 +78,30 @@ namespace MovieExplorer.Droid
             var nowPlayingMovies = await _viewModel.GetNowPlayingMoviesAsync();
 
             MovieRecyclerViewAdapter nowPlayingAdapter = new MovieRecyclerViewAdapter(nowPlayingMovies, this.Resources);
-            nowPlayingAdapter.ItemClick += OnItemClick;
+            nowPlayingAdapter.ItemClick += OnNowPlayingItemClick;
             _nowPlayingRecyclerView.SetAdapter(nowPlayingAdapter);
         }
 
-        private void OnItemClick(object sender, int e)
+        private void OnTopRatedItemClick(object sender, int movieId)
+        {
+            try
+            {
+                _viewModel.SelectTopRatedMovie(movieId);
+
+
+                //if (_viewModel.SelectTopRatedMovie(movieId))
+                //{
+                //    //var intent = new Intent(this, typeof(DetailActivity));
+                //    //StartActivity(intent);
+                //}
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log Exception
+            }
+        }
+
+        private void OnPopularItemClick(object sender, int e)
         {
             try
             {
@@ -82,6 +109,27 @@ namespace MovieExplorer.Droid
                 if (view != null)
                 {
                     // TODO: Select Movie in View Model that Details View Binds to
+                    _viewModel.SelectPopularMovie(view.MovieID);
+
+                    var intent = new Intent(this, typeof(DetailActivity));
+                    StartActivity(intent);
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log Exception
+            }
+        }
+
+        private void OnNowPlayingItemClick(object sender, int e)
+        {
+            try
+            {
+                MovieRecyclerViewAdapter view = (MovieRecyclerViewAdapter)sender;
+                if (view != null)
+                {
+                    // TODO: Select Movie in View Model that Details View Binds to
+                    _viewModel.SelectNowPlayingMovie(view.MovieID);
 
                     var intent = new Intent(this, typeof(DetailActivity));
                     StartActivity(intent);
