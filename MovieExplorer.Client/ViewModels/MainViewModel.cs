@@ -38,17 +38,11 @@ namespace MovieExplorer.Client.ViewModels
             var movie = _topRatedMovies.Where(x => x.Id == id).FirstOrDefault();
             if (movie != null)
             {
-                //ApplicationMaster.ViewModels.Detail.SelectedMovie = movie;
-                //return true;
-
                 ShowViewModel<DetailViewModel>(new SelectedMovie{ MovieId = movie.Id });
 
-                //var message = new SelectedMovieMessage(this, movie);
-                //_messenger.Publish(message);
-
-                //return true;
+                var message = new SelectedMovieMessage(this, movie);
+                _messenger.Publish(message);
             }
-            //return false;
         }
 
         private List<Movie> _popularMovies;
@@ -63,15 +57,16 @@ namespace MovieExplorer.Client.ViewModels
             return _popularMovies;
         }
 
-        public bool SelectPopularMovie(int id)
+        public void SelectPopularMovie(int id)
         {
             var movie = _popularMovies.Where(x => x.Id == id).FirstOrDefault();
             if (movie != null)
             {
-                //ApplicationMaster.ViewModels.Detail.SelectedMovie = movie;
-                return true;
+                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
+
+                var message = new SelectedMovieMessage(this, movie);
+                _messenger.Publish(message);
             }
-            return false;
         }
 
         private List<Movie> _nowPlayingMovies;
@@ -86,15 +81,16 @@ namespace MovieExplorer.Client.ViewModels
             return _nowPlayingMovies;
         }
 
-        public bool SelectNowPlayingMovie(int id)
+        public void SelectNowPlayingMovie(int id)
         {
             var movie = _nowPlayingMovies.Where(x => x.Id == id).FirstOrDefault();
             if (movie != null)
             {
-                //ApplicationMaster.ViewModels.Detail.SelectedMovie = movie;
-                return true;
+                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
+
+                var message = new SelectedMovieMessage(this, movie);
+                _messenger.Publish(message);
             }
-            return false;
         }
     }
 }

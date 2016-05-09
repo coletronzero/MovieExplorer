@@ -5,29 +5,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="none"
-    android:fillViewport="false"
-    android:layout_margin="10dp">
+    android:padding="10dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-    <!--<LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/SearchQuery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:cursorVisible="false"
-                android:layout_weight="1" />
-            <Button
-                android:id="@+id/SearchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Search" />
-        </LinearLayout>-->
+        <!--<Button
+            android:id="@+id/SearchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"-->
+            android:text="@string/Search" />
         <TextView
             android:text="@string/TopRated"
             android:textAppearance="?android:attr/textAppearanceMedium"

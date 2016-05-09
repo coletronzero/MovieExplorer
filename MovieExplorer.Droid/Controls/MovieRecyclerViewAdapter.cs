@@ -1,41 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.Support.V7.Widget;
-using MovieExplorer.Client.Models;
 using Android.Content.Res;
 using Android.Graphics;
 using System.Threading.Tasks;
 using System.Net;
 using MovieExplorer.Droid.Helpers;
-using Android.Graphics.Drawables;
 
 namespace MovieExplorer.Droid.Controls
 {
     public class MovieRecyclerViewAdapter : RecyclerView.Adapter
     {
-        //Create an Event so that our our clients can act when a user clicks
-        //on each individual item.
+        // Create an Event so that our our clients can act when a user clicks
+        // on each individual item.
         public event EventHandler<int> ItemClick;
-        public int MovieID { get; private set; }
 
         private List<MovieExplorer.Client.Models.Movie> _movies;
-        //private readonly ImageManager _imageManager;
 
         public MovieRecyclerViewAdapter(List<MovieExplorer.Client.Models.Movie> movies, Resources resources)
         {
             _movies = movies;
-            //_imageManager = new ImageManager(resources);
         }
 
-        //Must override, just like regular Adapters
+        // Must override, just like regular Adapters
         public override int ItemCount
         {
             get
@@ -44,41 +32,36 @@ namespace MovieExplorer.Droid.Controls
             }
         }
 
-        //Must override, this inflates our Layout and instantiates and assigns
-        //it to the ViewHolder.
+        // Must override, this inflates our Layout and instantiates and assigns
+        // it to the ViewHolder.
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            //Inflate our CrewMemberItem Layout
+            // Inflate our Movie Layout
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MovieCell, parent, false);
 
-            //Create our ViewHolder to cache the layout view references and register
-            //the OnClick event.
-            var viewHolder = new CrewMemberItemViewHolder(itemView, OnClick);
+            // Create our ViewHolder to cache the layout view references and register
+            // the OnClick event.
+            var viewHolder = new MovieItemViewHolder(itemView, OnClick);
 
             return viewHolder;
         }
 
-        //Must override, this is the important one.  This method is used to
-        //bind our current data to your view holder.  Think of this as the equivalent
-        //of GetView for regular Adapters.
+        // Must override, this is the important one.  This method is used to
+        // bind our current data to your view holder.  Think of this as the equivalent
+        // of GetView for regular Adapters.
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var viewHolder = holder as CrewMemberItemViewHolder;
+            var viewHolder = holder as MovieItemViewHolder;
 
             var currentMovie = _movies[position];
 
-            MovieID = currentMovie.Id;
-
-            //Bind our data from our data source to our View References
-            viewHolder.MovieName.Text = currentMovie.Title;
+            // Bind our data from our data source to our View References
+            //viewHolder.MovieName.Text = currentMovie.Title;
 
             var task = new BitmapDownloaderTask(viewHolder.MoviePhoto);
             viewHolder.MoviePhoto.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
             viewHolder.MoviePhoto.SetMinimumHeight(300);
             task.Execute("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath);
-
-            //await GetImageBitmapFromUrl("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath, viewHolder.MoviePhoto);
-            //viewHolder.MoviePhoto.SetImageBitmap(moviePoster);
         }
 
         private async Task<Bitmap> GetImageBitmapFromUrl(string url)
@@ -104,26 +87,18 @@ namespace MovieExplorer.Droid.Controls
             return imageBitmap;
         }
 
-        //This will fire any event handlers that are registered with our ItemClick
-        //event.
+        // This will fire any event handlers that are registered with our ItemClick
+        // event.
         private void OnClick(int position)
         {
-            if (ItemClick != null)
-            {
-                ItemClick(this, _movies[position].Id);
-            }
+            ItemClick?.Invoke(this, _movies[position].Id);
         }
 
-        //Since this example uses a lot of Bitmaps, we want to do some house cleaning
-        //and make them available for garbage collecting as soon as possible.
+        // Since this example uses a lot of Bitmaps, we want to do some house cleaning
+        // and make them available for garbage collecting as soon as possible.
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-
-            //if (_imageManager != null)
-            //{
-            //    _imageManager.Dispose();
-            //}
         }
     }
 }

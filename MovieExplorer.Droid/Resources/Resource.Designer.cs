@@ -148,17 +148,14 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f050002
 			public const int MvxBindingTagUnique = 2131034114;
 			
+			// aapt resource value: 0x7f050003
+			public const int detailMoviePhoto = 2131034115;
+			
 			// aapt resource value: 0x7f050000
 			public const int item_touch_helper_previous_elevation = 2131034112;
 			
 			// aapt resource value: 0x7f050007
 			public const int mainView = 2131034119;
-			
-			// aapt resource value: 0x7f050003
-			public const int movieImage = 2131034115;
-			
-			// aapt resource value: 0x7f05000c
-			public const int movie_Name = 2131034124;
 			
 			// aapt resource value: 0x7f05000b
 			public const int movie_Photo = 2131034123;
@@ -176,7 +173,7 @@ namespace MovieExplorer.Droid
 			public const int popular_recyclerView = 2131034121;
 			
 			// aapt resource value: 0x7f050006
-			public const int similar_movies = 2131034118;
+			public const int similar_recyclerView = 2131034118;
 			
 			// aapt resource value: 0x7f050008
 			public const int topRated_recyclerView = 2131034120;

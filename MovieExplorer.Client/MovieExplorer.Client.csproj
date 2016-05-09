@@ -36,7 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApplicationMaster.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\MovieSharpException.cs" />
     <Compile Include="Messages\SelectedMovieMessage.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="Services\IMovieSharpService.cs" />
     <Compile Include="Services\MovieSharpService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="App.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
   </ItemGroup>

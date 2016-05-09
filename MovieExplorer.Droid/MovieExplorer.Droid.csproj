@@ -97,16 +97,15 @@
     <Compile Include="Controls\MovieItemViewHolder.cs" />
     <Compile Include="Controls\MovieRecyclerViewAdapter.cs" />
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="DetailActivity.cs" />
+    <Compile Include="Views\DetailActivity.cs" />
     <Compile Include="Helpers\BitmapDownloaderTask.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="MovieImageView.cs" />
+    <Compile Include="Views\MainActivity.cs" />
+    <Compile Include="Controls\MovieImageView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
-    <Compile Include="Views\FirstView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

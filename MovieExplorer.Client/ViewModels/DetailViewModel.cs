@@ -5,13 +5,19 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using MovieExplorer.Client.Messages;
 using MovieExplorer.Client.NavigationParameters;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace MovieExplorer.Client.ViewModels
 {
     public class DetailViewModel : MvxViewModel
     {
+        private const string IMAGE_PREFIX = "http://image.tmdb.org/t/p/w500";
+
         private IMovieSharpService _movieClient;
         private readonly MvxSubscriptionToken _token;
+
         public DetailViewModel(IMovieSharpService movieClient, IMvxMessenger messenger)
         {
             _movieClient = movieClient;
@@ -32,12 +38,7 @@ namespace MovieExplorer.Client.ViewModels
             }
         }
 
-        private string _hello = "Hello MvvmCross";
-        public string Hello
-        { 
-            get { return _hello; }
-            set { SetProperty (ref _hello, value); }
-        }
+        public Action MovieSelectedDelegate { get; set; }
 
         private Movie _selectedMovie;
         public Movie SelectedMovie
@@ -47,12 +48,23 @@ namespace MovieExplorer.Client.ViewModels
             {
                 if(SetProperty(ref _selectedMovie,value))
                 {
+                    PosterUrl = IMAGE_PREFIX + _selectedMovie.PosterPath;
                     Title = _selectedMovie.Title;
-                    ReleaseDate = _selectedMovie.ReleaseDate;
+                    ReleaseDate = "Release Date: " + _selectedMovie.ReleaseDate;
+                    Rating = _selectedMovie.VoteAverage.ToString() + " Stars";
                     Votes = "(from " + _selectedMovie.VoteCount.ToString() + " votes)";
                     Overview = _selectedMovie.Overview;
+
+                    MovieSelectedDelegate?.Invoke();
                 }
             }
+        }
+
+        private string _posterUrl;
+        public string PosterUrl
+        {
+            get { return _posterUrl; }
+            set { SetProperty(ref _posterUrl, value); }
         }
 
         private string _title;
@@ -69,6 +81,13 @@ namespace MovieExplorer.Client.ViewModels
             set { SetProperty(ref _releaseDate, value); }
         }
 
+        private string _rating;
+        public string Rating
+        {
+            get { return _rating; }
+            set { SetProperty(ref _rating, value); }
+        }
+
         private string _votes;
         public string Votes
         {
@@ -81,6 +100,30 @@ namespace MovieExplorer.Client.ViewModels
         {
             get { return _overview; }
             set { SetProperty(ref _overview, value); }
+        }
+        
+        private List<Movie> _similarMovies;
+        public async Task<List<Movie>> GetSimilarMoviesAsync()
+        {
+            _similarMovies = new List<Movie>();
+            if(SelectedMovie != null && SelectedMovie.Id > 0)
+            {
+                var similarMoviesResponse = await _movieClient.GetSimilarMoviesAsync(SelectedMovie.Id);
+                if (similarMoviesResponse.IsOk)
+                {
+                    _similarMovies = similarMoviesResponse.Body.Results;
+                }
+            }
+            return _similarMovies;
+        }
+
+        public void SelectSimilarMovie(int id)
+        {
+            var movie = _similarMovies.Where(x => x.Id == id).FirstOrDefault();
+            if (movie != null)
+            {
+                SelectedMovie = movie;
+            }
         }
     }
 }

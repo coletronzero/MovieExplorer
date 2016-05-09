@@ -1,27 +1,17 @@
 ﻿using System;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Android.Graphics;
-using Java.IO;
-using System.Net;
-using System.Threading.Tasks;
-using MovieExplorer.Client;
 using MovieExplorer.Client.ViewModels;
-using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using MovieExplorer.Droid.Controls;
 using MvvmCross.Droid.Views;
+using Android.Views;
 
-namespace MovieExplorer.Droid
+namespace MovieExplorer.Droid.Views
 {
-    [Activity(Label = "MovieExplorer")]
+    [Activity(Label = "Movie Explorer")]
     public class MainActivity : MvxActivity
     {
-        //private HomeViewModel _viewModel;
         protected MainViewModel _viewModel
         {
             get { return ViewModel as MainViewModel; }
@@ -44,8 +34,6 @@ namespace MovieExplorer.Droid
             }
 
             //Button btnSearch = FindViewById<Button>(Resource.Id.SearchButton);
-
-            ApplicationMaster.Init();
 
             // Create a reference to our RecyclerView and set the layout manager;
             _topRatedRecyclerView = FindViewById<RecyclerView>(Resource.Id.topRated_recyclerView);
@@ -84,61 +72,17 @@ namespace MovieExplorer.Droid
 
         private void OnTopRatedItemClick(object sender, int movieId)
         {
-            try
-            {
-                _viewModel.SelectTopRatedMovie(movieId);
-
-
-                //if (_viewModel.SelectTopRatedMovie(movieId))
-                //{
-                //    //var intent = new Intent(this, typeof(DetailActivity));
-                //    //StartActivity(intent);
-                //}
-            }
-            catch (Exception ex)
-            {
-                // TODO: Log Exception
-            }
+            _viewModel.SelectTopRatedMovie(movieId);
         }
 
-        private void OnPopularItemClick(object sender, int e)
+        private void OnPopularItemClick(object sender, int movieId)
         {
-            try
-            {
-                MovieRecyclerViewAdapter view = (MovieRecyclerViewAdapter)sender;
-                if (view != null)
-                {
-                    // TODO: Select Movie in View Model that Details View Binds to
-                    _viewModel.SelectPopularMovie(view.MovieID);
-
-                    var intent = new Intent(this, typeof(DetailActivity));
-                    StartActivity(intent);
-                }
-            }
-            catch (Exception ex)
-            {
-                // TODO: Log Exception
-            }
+            _viewModel.SelectPopularMovie(movieId);
         }
 
-        private void OnNowPlayingItemClick(object sender, int e)
+        private void OnNowPlayingItemClick(object sender, int movieId)
         {
-            try
-            {
-                MovieRecyclerViewAdapter view = (MovieRecyclerViewAdapter)sender;
-                if (view != null)
-                {
-                    // TODO: Select Movie in View Model that Details View Binds to
-                    _viewModel.SelectNowPlayingMovie(view.MovieID);
-
-                    var intent = new Intent(this, typeof(DetailActivity));
-                    StartActivity(intent);
-                }
-            }
-            catch (Exception ex)
-            {
-                // TODO: Log Exception
-            }
+            _viewModel.SelectNowPlayingMovie(movieId);
         }
     }
 }
