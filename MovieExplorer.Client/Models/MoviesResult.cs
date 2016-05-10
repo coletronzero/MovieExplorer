@@ -2,7 +2,7 @@
 
 namespace MovieExplorer.Client.Models
 {
-	public class MoviesResult : SearchResult<Movie>
+	public class MoviesResult : SearchResult<MovieDto>
     {
     }
 }

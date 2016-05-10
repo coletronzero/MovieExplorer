@@ -26,7 +26,7 @@ namespace MovieExplorer.Droid.Views
             try
             {
                 base.OnCreate(bundle);
-                SetContentView(Resource.Layout.Main);
+                SetContentView(Resource.Layout.MainView);
             }
             catch (Exception ex)
             {

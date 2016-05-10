@@ -40,8 +40,8 @@ namespace MovieExplorer.Client.ViewModels
 
         public Action MovieSelectedDelegate { get; set; }
 
-        private Movie _selectedMovie;
-        public Movie SelectedMovie
+        private MovieDto _selectedMovie;
+        public MovieDto SelectedMovie
         {
             get { return _selectedMovie; }
             set
@@ -102,10 +102,10 @@ namespace MovieExplorer.Client.ViewModels
             set { SetProperty(ref _overview, value); }
         }
         
-        private List<Movie> _similarMovies;
-        public async Task<List<Movie>> GetSimilarMoviesAsync()
+        private List<MovieDto> _similarMovies;
+        public async Task<List<MovieDto>> GetSimilarMoviesAsync()
         {
-            _similarMovies = new List<Movie>();
+            _similarMovies = new List<MovieDto>();
             if(SelectedMovie != null && SelectedMovie.Id > 0)
             {
                 var similarMoviesResponse = await _movieClient.GetSimilarMoviesAsync(SelectedMovie.Id);

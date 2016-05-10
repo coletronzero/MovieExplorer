@@ -172,6 +172,15 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f050009
 			public const int popular_recyclerView = 2131034121;
 			
+			// aapt resource value: 0x7f05000c
+			public const int searchResult_MovieImage = 2131034124;
+			
+			// aapt resource value: 0x7f05000d
+			public const int searchResult_MovieTitle = 2131034125;
+			
+			// aapt resource value: 0x7f05000e
+			public const int searchResults_recyclerView = 2131034126;
+			
 			// aapt resource value: 0x7f050006
 			public const int similar_recyclerView = 2131034118;
 			
@@ -192,19 +201,22 @@ namespace MovieExplorer.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Detail = 2130903040;
+			public const int DetailView = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int FirstView = 2130903041;
+			public const int MainView = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			public const int MovieCell = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int MovieCell = 2130903043;
+			public const int SearchResultCell = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int SplashScreen = 2130903044;
+			public const int SearchView = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int SplashScreen = 2130903045;
 			
 			static Layout()
 			{

@@ -74,18 +74,18 @@ namespace MovieExplorer.Client.Services
 			return response;
 		}
 
-		public BaseResponse<Movie> GetMovie(int id)
+		public BaseResponse<MovieDto> GetMovie(int id)
 		{
 			return GetMovieAsync(id).Result;
 		}
 
-		public async Task<BaseResponse<Movie>> GetMovieAsync(int id)
+		public async Task<BaseResponse<MovieDto>> GetMovieAsync(int id)
 		{
 			var request = new HttpRequestMessage {
 				RequestUri = createRequestUri("/movie/{0}", id),
 				Method = HttpMethod.Get
 			};
-			var response = await ExecuteRequestAsync<Movie>(request);
+			var response = await ExecuteRequestAsync<MovieDto>(request);
 			return response;
 		}
 

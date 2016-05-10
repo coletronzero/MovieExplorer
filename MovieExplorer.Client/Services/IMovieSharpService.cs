@@ -23,9 +23,9 @@ namespace MovieExplorer.Client.Services
 
 		Task<BaseResponse<CollectionImages>> GetCollectionImagesAsync(int id);
 
-		BaseResponse<Movie> GetMovie(int id);
+		BaseResponse<MovieDto> GetMovie(int id);
 
-		Task<BaseResponse<Movie>> GetMovieAsync(int id);
+		Task<BaseResponse<MovieDto>> GetMovieAsync(int id);
 
 		BaseResponse<MoviesResult> GetSimilarMovies(int id, int page = 1);
 

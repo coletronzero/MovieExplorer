@@ -50,7 +50,7 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\Language.cs" />
-    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieDto.cs" />
     <Compile Include="Models\MoviesResult.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="NavigationParameters\SelectedMovie.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="App.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">

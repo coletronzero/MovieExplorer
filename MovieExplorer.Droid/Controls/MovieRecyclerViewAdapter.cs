@@ -7,6 +7,7 @@ using Android.Graphics;
 using System.Threading.Tasks;
 using System.Net;
 using MovieExplorer.Droid.Helpers;
+using MovieExplorer.Client.Models;
 
 namespace MovieExplorer.Droid.Controls
 {
@@ -16,11 +17,13 @@ namespace MovieExplorer.Droid.Controls
         // on each individual item.
         public event EventHandler<int> ItemClick;
 
-        private List<MovieExplorer.Client.Models.Movie> _movies;
+        private List<MovieDto> _movies;
+        private bool _forSearchResults;
 
-        public MovieRecyclerViewAdapter(List<MovieExplorer.Client.Models.Movie> movies, Resources resources)
+        public MovieRecyclerViewAdapter(List<MovieDto> movies, Resources resources, bool forSearchResults = false)
         {
             _movies = movies;
+            _forSearchResults = forSearchResults;
         }
 
         // Must override, just like regular Adapters
@@ -36,13 +39,26 @@ namespace MovieExplorer.Droid.Controls
         // it to the ViewHolder.
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            // Inflate our Movie Layout
-            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MovieCell, parent, false);
+            RecyclerView.ViewHolder viewHolder;
+            if (_forSearchResults)
+            {
+                // Inflate our Movie Layout
+                View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.SearchResultCell, parent, false);
 
-            // Create our ViewHolder to cache the layout view references and register
-            // the OnClick event.
-            var viewHolder = new MovieItemViewHolder(itemView, OnClick);
+                // Create our ViewHolder to cache the layout view references and register
+                // the OnClick event.
+                viewHolder = new SearchResultViewHolder(itemView, OnClick);
+            }
+            else
+            {
+                // Inflate our Movie Layout
+                View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MovieCell, parent, false);
 
+                // Create our ViewHolder to cache the layout view references and register
+                // the OnClick event.
+                viewHolder = new MovieItemViewHolder(itemView, OnClick);
+            }
+            
             return viewHolder;
         }
 
@@ -51,17 +67,29 @@ namespace MovieExplorer.Droid.Controls
         // of GetView for regular Adapters.
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            var viewHolder = holder as MovieItemViewHolder;
-
             var currentMovie = _movies[position];
 
             // Bind our data from our data source to our View References
-            //viewHolder.MovieName.Text = currentMovie.Title;
+            if (_forSearchResults)
+            {
+                var viewHolder = holder as SearchResultViewHolder;
 
-            var task = new BitmapDownloaderTask(viewHolder.MoviePhoto);
-            viewHolder.MoviePhoto.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
-            viewHolder.MoviePhoto.SetMinimumHeight(300);
-            task.Execute("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath);
+                viewHolder.MovieName.Text = currentMovie.Title;
+
+                var task = new BitmapDownloaderTask(viewHolder.MoviePhoto);
+                viewHolder.MoviePhoto.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
+                viewHolder.MoviePhoto.SetMinimumHeight(300);
+                task.Execute("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath);
+            }
+            else
+            {
+                var viewHolder = holder as MovieItemViewHolder;
+
+                var task = new BitmapDownloaderTask(viewHolder.MoviePhoto);
+                viewHolder.MoviePhoto.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
+                viewHolder.MoviePhoto.SetMinimumHeight(300);
+                task.Execute("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath);
+            }
         }
 
         private async Task<Bitmap> GetImageBitmapFromUrl(string url)

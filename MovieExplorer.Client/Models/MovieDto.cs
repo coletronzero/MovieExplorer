@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace MovieExplorer.Client.Models
 {
     [DebuggerDisplay("Id={Id}; Title={Title}")]
-    public class Movie
+    public class MovieDto
     {
         [JsonProperty("adult")]
         public bool IsAdult { get; set; }

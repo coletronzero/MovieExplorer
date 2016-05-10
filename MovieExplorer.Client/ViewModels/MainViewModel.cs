@@ -8,6 +8,7 @@ using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MovieExplorer.Client.ViewModels
 {
@@ -21,10 +22,21 @@ namespace MovieExplorer.Client.ViewModels
             _messenger = messenger;
         }
 
-        private List<Movie> _topRatedMovies;
-        public async Task<List<Movie>> GetTopRatedMoviesAsync()
+        public ICommand GoToSearch
         {
-            _topRatedMovies = new List<Movie>();
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<SearchViewModel>();
+                });
+            }
+        }
+
+        private List<MovieDto> _topRatedMovies;
+        public async Task<List<MovieDto>> GetTopRatedMoviesAsync()
+        {
+            _topRatedMovies = new List<MovieDto>();
             var topRatedMoviesResponse = await _movieClient.GetTopRatedMoviesAsync();
             if (topRatedMoviesResponse.IsOk)
             {
@@ -45,10 +57,10 @@ namespace MovieExplorer.Client.ViewModels
             }
         }
 
-        private List<Movie> _popularMovies;
-        public async Task<List<Movie>> GetPopularMoviesAsync()
+        private List<MovieDto> _popularMovies;
+        public async Task<List<MovieDto>> GetPopularMoviesAsync()
         {
-            _popularMovies = new List<Movie>();
+            _popularMovies = new List<MovieDto>();
             var popularMoviesResponse = await _movieClient.GetPopularMoviesAsync();
             if (popularMoviesResponse.IsOk)
             {
@@ -69,10 +81,10 @@ namespace MovieExplorer.Client.ViewModels
             }
         }
 
-        private List<Movie> _nowPlayingMovies;
-        public async Task<List<Movie>> GetNowPlayingMoviesAsync()
+        private List<MovieDto> _nowPlayingMovies;
+        public async Task<List<MovieDto>> GetNowPlayingMoviesAsync()
         {
-            _nowPlayingMovies = new List<Movie>();
+            _nowPlayingMovies = new List<MovieDto>();
             var nowPlayingMoviesResponse = await _movieClient.GetNowPlayingMoviesAsync();
             if (nowPlayingMoviesResponse.IsOk)
             {

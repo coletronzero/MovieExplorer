@@ -5,11 +5,11 @@ namespace MovieExplorer.Client.Messages
 {
     public class SelectedMovieMessage : MvxMessage
     {
-        public SelectedMovieMessage(object sender, Movie movie) : base(sender)
+        public SelectedMovieMessage(object sender, MovieDto movie) : base(sender)
         {
             SelectedMovie = movie;
         }
 
-        public Movie SelectedMovie { get; private set; }
+        public MovieDto SelectedMovie { get; private set; }
     }
 }

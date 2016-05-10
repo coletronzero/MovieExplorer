@@ -29,7 +29,7 @@ namespace MovieExplorer.Droid.Views
             try
             {
                 base.OnCreate(savedInstanceState);
-                SetContentView(Resource.Layout.Detail);
+                SetContentView(Resource.Layout.DetailView);
             }
             catch (Exception ex)
             {
