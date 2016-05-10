@@ -16,17 +16,10 @@ namespace MovieExplorer.Client.ViewModels
         private const string IMAGE_PREFIX = "http://image.tmdb.org/t/p/w500";
 
         private IMovieSharpService _movieClient;
-        private readonly MvxSubscriptionToken _token;
 
-        public DetailViewModel(IMovieSharpService movieClient, IMvxMessenger messenger)
+        public DetailViewModel(IMovieSharpService movieClient)
         {
             _movieClient = movieClient;
-            _token = messenger.Subscribe<SelectedMovieMessage>(OnSelectedMovieMessage);
-        }
-
-        private void OnSelectedMovieMessage(SelectedMovieMessage obj)
-        {
-            SelectedMovie = obj.SelectedMovie;
         }
 
         public async void Init(SelectedMovie parameters)

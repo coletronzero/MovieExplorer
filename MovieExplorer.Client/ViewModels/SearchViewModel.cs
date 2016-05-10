@@ -14,12 +14,10 @@ namespace MovieExplorer.Client.ViewModels
     public class SearchViewModel : MvxViewModel
     {
         private IMovieSharpService _movieClient;
-        private IMvxMessenger _messenger;
 
-        public SearchViewModel(IMovieSharpService movieClient, IMvxMessenger messenger)
+        public SearchViewModel(IMovieSharpService movieClient)
         {
             _movieClient = movieClient;
-            _messenger = messenger;
             SearchResults = new List<MovieDto>();
         }
 
@@ -64,9 +62,6 @@ namespace MovieExplorer.Client.ViewModels
             if (movie != null)
             {
                 ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
-
-                var message = new SelectedMovieMessage(this, movie);
-                _messenger.Publish(message);
             }
         }
     }

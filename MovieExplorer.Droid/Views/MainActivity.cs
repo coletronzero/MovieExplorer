@@ -6,11 +6,12 @@ using Android.Support.V7.Widget;
 using MovieExplorer.Droid.Controls;
 using MvvmCross.Droid.Views;
 using Android.Views;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MovieExplorer.Droid.Views
 {
     [Activity(Label = "Movie Explorer")]
-    public class MainActivity : MvxActivity
+    public class MainActivity : MvxAppCompatActivity
     {
         protected MainViewModel _viewModel
         {
@@ -33,7 +34,12 @@ namespace MovieExplorer.Droid.Views
                 var test = ex;
             }
 
-            //Button btnSearch = FindViewById<Button>(Resource.Id.SearchButton);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+
+            //Toolbar will now take on default actionbar characteristics
+            SetSupportActionBar(toolbar);
+
+            SupportActionBar.Title = "Movie Explorer";
 
             // Create a reference to our RecyclerView and set the layout manager;
             _topRatedRecyclerView = FindViewById<RecyclerView>(Resource.Id.topRated_recyclerView);

@@ -15,11 +15,9 @@ namespace MovieExplorer.Client.ViewModels
     public class MainViewModel : MvxViewModel
     {
         private IMovieSharpService _movieClient;
-        private IMvxMessenger _messenger;
-        public MainViewModel(IMovieSharpService movieClient, IMvxMessenger messenger)
+        public MainViewModel(IMovieSharpService movieClient)
         {
             _movieClient = movieClient;
-            _messenger = messenger;
         }
 
         public ICommand GoToSearch
@@ -51,9 +49,6 @@ namespace MovieExplorer.Client.ViewModels
             if (movie != null)
             {
                 ShowViewModel<DetailViewModel>(new SelectedMovie{ MovieId = movie.Id });
-
-                var message = new SelectedMovieMessage(this, movie);
-                _messenger.Publish(message);
             }
         }
 
@@ -75,9 +70,6 @@ namespace MovieExplorer.Client.ViewModels
             if (movie != null)
             {
                 ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
-
-                var message = new SelectedMovieMessage(this, movie);
-                _messenger.Publish(message);
             }
         }
 
@@ -99,9 +91,6 @@ namespace MovieExplorer.Client.ViewModels
             if (movie != null)
             {
                 ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
-
-                var message = new SelectedMovieMessage(this, movie);
-                _messenger.Publish(message);
             }
         }
     }

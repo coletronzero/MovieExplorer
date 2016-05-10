@@ -25,7 +25,6 @@ namespace MovieExplorer.Droid.Views
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            ActionBar.SetHomeButtonEnabled(true);
             try
             {
                 base.OnCreate(savedInstanceState);
