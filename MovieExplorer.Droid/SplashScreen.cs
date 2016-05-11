@@ -5,7 +5,7 @@ using MvvmCross.Droid.Views;
 namespace MovieExplorer.Droid
 {
     [Activity(
-        Label = "MovieExplorer.Droid"
+        Label = "MovieExplorer"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"

@@ -5,6 +5,7 @@ using MvvmCross.Core.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace MovieExplorer.Client.ViewModels
 {
@@ -32,6 +33,8 @@ namespace MovieExplorer.Client.ViewModels
             }
             return _topRatedMovies;
         }
+
+        // TODO: Consolidate Select Methods into one since we are just using id
 
         public void SelectTopRatedMovie(int id)
         {
@@ -82,6 +85,11 @@ namespace MovieExplorer.Client.ViewModels
             {
                 ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
             }
+        }
+
+        public bool ShowFavorites()
+        {
+            return ShowViewModel<FavoritesViewModel>();
         }
     }
 }

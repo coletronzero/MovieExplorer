@@ -100,7 +100,7 @@ namespace MovieExplorer.Droid.Views
             {
                 // Show Favorites
                 case Resource.Id.action_favorite:
-                    return true;
+                    return _viewModel.ShowFavorites();
                 default:
                     return base.OnOptionsItemSelected(item);
             }

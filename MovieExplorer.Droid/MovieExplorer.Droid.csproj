@@ -136,6 +136,7 @@
     <Compile Include="Views\DetailActivity.cs" />
     <Compile Include="Helpers\BitmapDownloaderTask.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Views\FavoritesActivity.cs" />
     <Compile Include="Views\MainActivity.cs" />
     <Compile Include="Controls\MovieImageView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -161,6 +162,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\toolbar.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\FavoritesView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
+using System.Windows.Input;
 
 namespace MovieExplorer.Client.ViewModels
 {
@@ -18,10 +19,19 @@ namespace MovieExplorer.Client.ViewModels
         private IMovieSharpService _movieClient;
         private readonly IMvxFileStore _fileStore;
         private readonly IMvxJsonConverter _jsonConverter;
+        private readonly string _filePath;
 
-        public DetailViewModel(IMovieSharpService movieClient)
+        private List<int> FavoriteMovieIdList;
+
+        public DetailViewModel(IMovieSharpService movieClient, IMvxFileStore fileStore, IMvxJsonConverter jsonConverter)
         {
             _movieClient = movieClient;
+            _fileStore = fileStore;
+            _jsonConverter = jsonConverter;
+            _filePath = _fileStore.PathCombine("SubDir", "FavoriteMovies.txt");
+            _fileStore.EnsureFolderExists("SubDir");
+
+            LoadFavoriteMovies();
         }
 
         public async void Init(SelectedMovie parameters)
@@ -30,6 +40,24 @@ namespace MovieExplorer.Client.ViewModels
             if (movieResponse.IsOk)
             {
                 SelectedMovie = movieResponse.Body;
+            }
+        }
+
+        private void LoadFavoriteMovies()
+        {
+            try
+            {
+                // Attempt to Load List of Favorite Movies from Storage
+                FavoriteMovieIdList = new List<int>();
+                string txt;
+                if (_fileStore.TryReadTextFile(_filePath, out txt))
+                {
+                    FavoriteMovieIdList = _jsonConverter.DeserializeObject<List<int>>(txt);
+                }
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log Exception
             }
         }
 
@@ -118,6 +146,24 @@ namespace MovieExplorer.Client.ViewModels
             if (movie != null)
             {
                 SelectedMovie = movie;
+            }
+        }
+
+        public ICommand SaveFavoriteMovie
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    // If the movie is not in the list of favorites, add it
+                    if(!FavoriteMovieIdList.Contains(SelectedMovie.Id))
+                    {
+                        FavoriteMovieIdList.Add(SelectedMovie.Id);
+                        
+                        var json = _jsonConverter.SerializeObject(FavoriteMovieIdList);
+                        _fileStore.WriteFile(_filePath, json);
+                    }
+                });
             }
         }
     }
