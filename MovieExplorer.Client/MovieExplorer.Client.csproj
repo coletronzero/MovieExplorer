@@ -38,7 +38,6 @@
   <ItemGroup>
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\MovieSharpException.cs" />
-    <Compile Include="Messages\SelectedMovieMessage.cs" />
     <Compile Include="Models\BaseResponse.cs" />
     <Compile Include="Models\Collection.cs" />
     <Compile Include="Models\CollectionImages.cs" />
@@ -53,6 +52,7 @@
     <Compile Include="Models\MovieDto.cs" />
     <Compile Include="Models\MoviesResult.cs" />
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="NavigationParameters\SearchQuery.cs" />
     <Compile Include="NavigationParameters\SelectedMovie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IMovieSharpService.cs" />
@@ -72,8 +72,8 @@
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v6.0\Mono.Android.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http">

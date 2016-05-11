@@ -7,6 +7,8 @@ using MovieExplorer.Droid.Controls;
 using MvvmCross.Droid.Views;
 using Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Support.V4.View;
+using Java.Interop;
 
 namespace MovieExplorer.Droid.Views
 {
@@ -21,6 +23,8 @@ namespace MovieExplorer.Droid.Views
         private RecyclerView _topRatedRecyclerView;
         private RecyclerView _popularRecyclerView;
         private RecyclerView _nowPlayingRecyclerView;
+
+        private SearchView _searchView;
 
         protected override async void OnCreate(Bundle bundle)
         {
@@ -74,6 +78,37 @@ namespace MovieExplorer.Droid.Views
             MovieRecyclerViewAdapter nowPlayingAdapter = new MovieRecyclerViewAdapter(nowPlayingMovies, this.Resources);
             nowPlayingAdapter.ItemClick += OnNowPlayingItemClick;
             _nowPlayingRecyclerView.SetAdapter(nowPlayingAdapter);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.main, menu);
+
+            var item = menu.FindItem(Resource.Id.action_search);
+
+            var searchView = MenuItemCompat.GetActionView(item);
+            _searchView = searchView.JavaCast<SearchView>();
+
+            _searchView.QueryTextSubmit += _searchView_QueryTextSubmit;
+
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch(item.ItemId)
+            {
+                // Show Favorites
+                case Resource.Id.action_favorite:
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+        }
+
+        private void _searchView_QueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
+        {
+            _viewModel.GoToSearch(e.Query);
         }
 
         private void OnTopRatedItemClick(object sender, int movieId)

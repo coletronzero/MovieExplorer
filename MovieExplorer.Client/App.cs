@@ -1,7 +1,4 @@
-using MovieExplorer.Client.Services;
-using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
-using MvvmCross.Plugins.Messenger;
 
 namespace MovieExplorer.Client
 {

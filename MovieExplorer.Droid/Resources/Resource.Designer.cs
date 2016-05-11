@@ -1501,13 +1501,19 @@ namespace MovieExplorer.Droid
 			public const int abc_textfield_search_material = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int Icon = 2130837579;
-			
-			// aapt resource value: 0x7f02004d
-			public const int notification_template_icon_bg = 2130837581;
+			public const int favorite = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int splash = 2130837580;
+			public const int Icon = 2130837580;
+			
+			// aapt resource value: 0x7f02004f
+			public const int notification_template_icon_bg = 2130837583;
+			
+			// aapt resource value: 0x7f02004d
+			public const int search = 2130837581;
+			
+			// aapt resource value: 0x7f02004e
+			public const int splash = 2130837582;
 			
 			static Drawable()
 			{
@@ -1558,6 +1564,9 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060061
 			public const int action_divider = 2131099745;
 			
+			// aapt resource value: 0x7f06006e
+			public const int action_favorite = 2131099758;
+			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
 			
@@ -1572,6 +1581,9 @@ namespace MovieExplorer.Droid
 			
 			// aapt resource value: 0x7f060026
 			public const int action_mode_close_button = 2131099686;
+			
+			// aapt resource value: 0x7f06006d
+			public const int action_search = 2131099757;
 			
 			// aapt resource value: 0x7f060027
 			public const int activity_chooser_view_content = 2131099687;
@@ -2032,23 +2044,42 @@ namespace MovieExplorer.Droid
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int main = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
 			// aapt resource value: 0x7f070014
 			public const int ApplicationName = 2131165204;
 			
-			// aapt resource value: 0x7f070018
-			public const int NowPlaying = 2131165208;
+			// aapt resource value: 0x7f070016
+			public const int Favorite = 2131165206;
 			
-			// aapt resource value: 0x7f070017
-			public const int Popular = 2131165207;
+			// aapt resource value: 0x7f070019
+			public const int NowPlaying = 2131165209;
+			
+			// aapt resource value: 0x7f070018
+			public const int Popular = 2131165208;
 			
 			// aapt resource value: 0x7f070015
 			public const int Search = 2131165205;
 			
-			// aapt resource value: 0x7f070016
-			public const int TopRated = 2131165206;
+			// aapt resource value: 0x7f070017
+			public const int TopRated = 2131165207;
 			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;

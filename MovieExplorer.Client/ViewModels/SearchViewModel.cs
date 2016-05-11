@@ -1,9 +1,7 @@
-﻿using MovieExplorer.Client.Messages;
-using MovieExplorer.Client.Models;
+﻿using MovieExplorer.Client.Models;
 using MovieExplorer.Client.NavigationParameters;
 using MovieExplorer.Client.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +17,16 @@ namespace MovieExplorer.Client.ViewModels
         {
             _movieClient = movieClient;
             SearchResults = new List<MovieDto>();
+        }
+
+        public async void Init(SearchQuery parameters)
+        {
+            var searchResponse = await _movieClient.SearchMoviesAsync(parameters.Query);
+            if (searchResponse.IsOk)
+            {
+                SearchResults = searchResponse.Body.Results;
+                ShowSearchResultsDelegate?.Invoke();
+            }
         }
 
         private string _searchQuery;
@@ -48,10 +56,10 @@ namespace MovieExplorer.Client.ViewModels
         public async void SearchForMovies()
         {
             SearchResults.Clear();
-            var topRatedMoviesResponse = await _movieClient.SearchMoviesAsync(SearchQuery);
-            if (topRatedMoviesResponse.IsOk)
+            var searchResponse = await _movieClient.SearchMoviesAsync(SearchQuery);
+            if (searchResponse.IsOk)
             {
-                SearchResults = topRatedMoviesResponse.Body.Results;
+                SearchResults = searchResponse.Body.Results;
                 ShowSearchResultsDelegate?.Invoke();
             }
         }

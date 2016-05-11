@@ -2,12 +2,12 @@ using System;
 using MovieExplorer.Client.Models;
 using MovieExplorer.Client.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
-using MovieExplorer.Client.Messages;
 using MovieExplorer.Client.NavigationParameters;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using MvvmCross.Platform.Platform;
+using MvvmCross.Plugins.File;
 
 namespace MovieExplorer.Client.ViewModels
 {
@@ -16,6 +16,8 @@ namespace MovieExplorer.Client.ViewModels
         private const string IMAGE_PREFIX = "http://image.tmdb.org/t/p/w500";
 
         private IMovieSharpService _movieClient;
+        private readonly IMvxFileStore _fileStore;
+        private readonly IMvxJsonConverter _jsonConverter;
 
         public DetailViewModel(IMovieSharpService movieClient)
         {

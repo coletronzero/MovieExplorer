@@ -1,14 +1,10 @@
-﻿using Android.OS;
-using MovieExplorer.Client.Messages;
-using MovieExplorer.Client.Models;
+﻿using MovieExplorer.Client.Models;
 using MovieExplorer.Client.NavigationParameters;
 using MovieExplorer.Client.Services;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace MovieExplorer.Client.ViewModels
 {
@@ -20,15 +16,9 @@ namespace MovieExplorer.Client.ViewModels
             _movieClient = movieClient;
         }
 
-        public ICommand GoToSearch
+        public void GoToSearch(string query)
         {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    ShowViewModel<SearchViewModel>();
-                });
-            }
+            ShowViewModel<SearchViewModel>(new SearchQuery { Query = query });
         }
 
         private List<MovieDto> _topRatedMovies;
