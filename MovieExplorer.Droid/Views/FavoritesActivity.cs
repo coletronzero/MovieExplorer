@@ -1,15 +1,17 @@
 using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
+using Android.Views;
 using MovieExplorer.Client.ViewModels;
 using MovieExplorer.Droid.Controls;
-using MvvmCross.Droid.Views;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using System;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MovieExplorer.Droid.Views
 {
     [Activity(Label = "FavoritesActivity")]
-    public class FavoritesActivity : MvxActivity
+    public class FavoritesActivity : MvxAppCompatActivity
     {
         protected FavoritesViewModel _viewModel
         {
@@ -30,10 +32,25 @@ namespace MovieExplorer.Droid.Views
                 var test = ex;
             }
 
+            var toolbar = FindViewById<Toolbar>(Resource.Id.favorites_toolbar);
+            //Toolbar will now take on default actionbar characteristics
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Movie Explorer";
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
             _favoritesView = FindViewById<RecyclerView>(Resource.Id.favorites_recyclerView);
             _favoritesView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
             _viewModel.ShowFavoritesDelegate = ShowFavorites;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+                Finish();
+
+            return base.OnOptionsItemSelected(item);
         }
 
         private void ShowFavorites()

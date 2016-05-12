@@ -1,19 +1,20 @@
-using System;
 using Android.App;
-using Android.OS;
-using Android.Widget;
-using MvvmCross.Droid.Views;
-using MovieExplorer.Droid.Helpers;
-using MovieExplorer.Droid.Controls;
 using Android.Graphics;
-using MovieExplorer.Client.ViewModels;
+using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
+using MovieExplorer.Client.ViewModels;
+using MovieExplorer.Droid.Controls;
+using MovieExplorer.Droid.Helpers;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using System;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MovieExplorer.Droid.Views
 {
     [Activity(Label = "Movie Explorer")]
-    public class DetailActivity : MvxActivity
+    public class DetailActivity : MvxAppCompatActivity
     {
         protected DetailViewModel _viewModel
         {
@@ -35,11 +36,26 @@ namespace MovieExplorer.Droid.Views
                 var test = ex;
             }
 
+            var toolbar = FindViewById<Toolbar>(Resource.Id.detail_toolbar);
+            //Toolbar will now take on default actionbar characteristics
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Movie Explorer";
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
             _movieImage = FindViewById<ImageView>(Resource.Id.detailMoviePhoto);
             _similarRecycler = FindViewById<RecyclerView>(Resource.Id.similar_recyclerView);
             _similarRecycler.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
 
             _viewModel.MovieSelectedDelegate = OnMovieSelected;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+                Finish();
+
+            return base.OnOptionsItemSelected(item);
         }
 
         private async void OnMovieSelected()

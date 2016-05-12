@@ -34,17 +34,6 @@ namespace MovieExplorer.Client.ViewModels
             return _topRatedMovies;
         }
 
-        // TODO: Consolidate Select Methods into one since we are just using id
-
-        public void SelectTopRatedMovie(int id)
-        {
-            var movie = _topRatedMovies.Where(x => x.Id == id).FirstOrDefault();
-            if (movie != null)
-            {
-                ShowViewModel<DetailViewModel>(new SelectedMovie{ MovieId = movie.Id });
-            }
-        }
-
         private List<MovieDto> _popularMovies;
         public async Task<List<MovieDto>> GetPopularMoviesAsync()
         {
@@ -55,15 +44,6 @@ namespace MovieExplorer.Client.ViewModels
                 _popularMovies = popularMoviesResponse.Body.Results;
             }
             return _popularMovies;
-        }
-
-        public void SelectPopularMovie(int id)
-        {
-            var movie = _popularMovies.Where(x => x.Id == id).FirstOrDefault();
-            if (movie != null)
-            {
-                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
-            }
         }
 
         private List<MovieDto> _nowPlayingMovies;
@@ -78,13 +58,9 @@ namespace MovieExplorer.Client.ViewModels
             return _nowPlayingMovies;
         }
 
-        public void SelectNowPlayingMovie(int id)
+        public void SelectMovie(int movieId)
         {
-            var movie = _nowPlayingMovies.Where(x => x.Id == id).FirstOrDefault();
-            if (movie != null)
-            {
-                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
-            }
+                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movieId });
         }
 
         public bool ShowFavorites()

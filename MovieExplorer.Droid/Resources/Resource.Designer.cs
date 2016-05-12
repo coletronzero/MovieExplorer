@@ -1534,8 +1534,8 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06000b
 			public const int MvxBindingTagUnique = 2131099659;
 			
-			// aapt resource value: 0x7f06005c
-			public const int action0 = 2131099740;
+			// aapt resource value: 0x7f06005e
+			public const int action0 = 2131099742;
 			
 			// aapt resource value: 0x7f060044
 			public const int action_bar = 2131099716;
@@ -1561,11 +1561,11 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060045
 			public const int action_context_bar = 2131099717;
 			
-			// aapt resource value: 0x7f060060
-			public const int action_divider = 2131099744;
+			// aapt resource value: 0x7f060062
+			public const int action_divider = 2131099746;
 			
-			// aapt resource value: 0x7f06006d
-			public const int action_favorite = 2131099757;
+			// aapt resource value: 0x7f060070
+			public const int action_favorite = 2131099760;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -1582,9 +1582,6 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060026
 			public const int action_mode_close_button = 2131099686;
 			
-			// aapt resource value: 0x7f06006c
-			public const int action_search = 2131099756;
-			
 			// aapt resource value: 0x7f060027
 			public const int activity_chooser_view_content = 2131099687;
 			
@@ -1600,14 +1597,14 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06002e
 			public const int buttonPanel = 2131099694;
 			
-			// aapt resource value: 0x7f06005d
-			public const int cancel_action = 2131099741;
+			// aapt resource value: 0x7f06005f
+			public const int cancel_action = 2131099743;
 			
 			// aapt resource value: 0x7f06003c
 			public const int checkbox = 2131099708;
 			
-			// aapt resource value: 0x7f060063
-			public const int chronometer = 2131099747;
+			// aapt resource value: 0x7f060065
+			public const int chronometer = 2131099749;
 			
 			// aapt resource value: 0x7f060020
 			public const int collapseActionView = 2131099680;
@@ -1627,8 +1624,11 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06002a
 			public const int default_activity_button = 2131099690;
 			
+			// aapt resource value: 0x7f060054
+			public const int detailMoviePhoto = 2131099732;
+			
 			// aapt resource value: 0x7f060053
-			public const int detailMoviePhoto = 2131099731;
+			public const int detail_toolbar = 2131099731;
 			
 			// aapt resource value: 0x7f06000f
 			public const int disableHome = 2131099663;
@@ -1639,8 +1639,8 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06001d
 			public const int end = 2131099677;
 			
-			// aapt resource value: 0x7f060068
-			public const int end_padder = 2131099752;
+			// aapt resource value: 0x7f06006a
+			public const int end_padder = 2131099754;
 			
 			// aapt resource value: 0x7f060028
 			public const int expand_activities_button = 2131099688;
@@ -1648,8 +1648,11 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06003b
 			public const int expanded_menu = 2131099707;
 			
-			// aapt resource value: 0x7f060055
-			public const int favorites_recyclerView = 2131099733;
+			// aapt resource value: 0x7f060057
+			public const int favorites_recyclerView = 2131099735;
+			
+			// aapt resource value: 0x7f060056
+			public const int favorites_toolbar = 2131099734;
 			
 			// aapt resource value: 0x7f060005
 			public const int home = 2131099653;
@@ -1666,17 +1669,17 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060029
 			public const int image = 2131099689;
 			
-			// aapt resource value: 0x7f060067
-			public const int info = 2131099751;
+			// aapt resource value: 0x7f060069
+			public const int info = 2131099753;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
 			
-			// aapt resource value: 0x7f060061
-			public const int line1 = 2131099745;
+			// aapt resource value: 0x7f060063
+			public const int line1 = 2131099747;
 			
-			// aapt resource value: 0x7f060065
-			public const int line3 = 2131099749;
+			// aapt resource value: 0x7f060067
+			public const int line3 = 2131099751;
 			
 			// aapt resource value: 0x7f06000c
 			public const int listMode = 2131099660;
@@ -1684,17 +1687,17 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06002b
 			public const int list_item = 2131099691;
 			
-			// aapt resource value: 0x7f060057
-			public const int mainView = 2131099735;
+			// aapt resource value: 0x7f06006f
+			public const int main_menu_action_search = 2131099759;
 			
-			// aapt resource value: 0x7f06005f
-			public const int media_actions = 2131099743;
+			// aapt resource value: 0x7f060061
+			public const int media_actions = 2131099745;
 			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
 			
-			// aapt resource value: 0x7f06005b
-			public const int movie_Photo = 2131099739;
+			// aapt resource value: 0x7f06005d
+			public const int movie_Photo = 2131099741;
 			
 			// aapt resource value: 0x7f060017
 			public const int multiply = 2131099671;
@@ -1708,14 +1711,14 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06000d
 			public const int normal = 2131099661;
 			
-			// aapt resource value: 0x7f06005a
-			public const int nowPlaying_recyclerView = 2131099738;
+			// aapt resource value: 0x7f06005c
+			public const int nowPlaying_recyclerView = 2131099740;
 			
 			// aapt resource value: 0x7f060030
 			public const int parentPanel = 2131099696;
 			
-			// aapt resource value: 0x7f060059
-			public const int popular_recyclerView = 2131099737;
+			// aapt resource value: 0x7f06005b
+			public const int popular_recyclerView = 2131099739;
 			
 			// aapt resource value: 0x7f060006
 			public const int progress_circular = 2131099654;
@@ -1725,6 +1728,9 @@ namespace MovieExplorer.Droid
 			
 			// aapt resource value: 0x7f06003e
 			public const int radio = 2131099710;
+			
+			// aapt resource value: 0x7f060059
+			public const int refresher = 2131099737;
 			
 			// aapt resource value: 0x7f060018
 			public const int screen = 2131099672;
@@ -1738,14 +1744,14 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060036
 			public const int scrollView = 2131099702;
 			
-			// aapt resource value: 0x7f060069
-			public const int searchResult_MovieImage = 2131099753;
-			
-			// aapt resource value: 0x7f06006a
-			public const int searchResult_MovieTitle = 2131099754;
-			
 			// aapt resource value: 0x7f06006b
-			public const int searchResults_recyclerView = 2131099755;
+			public const int searchResult_MovieImage = 2131099755;
+			
+			// aapt resource value: 0x7f06006c
+			public const int searchResult_MovieTitle = 2131099756;
+			
+			// aapt resource value: 0x7f06006e
+			public const int searchResults_recyclerView = 2131099758;
 			
 			// aapt resource value: 0x7f060048
 			public const int search_badge = 2131099720;
@@ -1768,11 +1774,17 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06004b
 			public const int search_mag_icon = 2131099723;
 			
+			// aapt resource value: 0x7f060071
+			public const int search_menu_action_search = 2131099761;
+			
 			// aapt resource value: 0x7f06004c
 			public const int search_plate = 2131099724;
 			
 			// aapt resource value: 0x7f06004d
 			public const int search_src_text = 2131099725;
+			
+			// aapt resource value: 0x7f06006d
+			public const int search_toolbar = 2131099757;
 			
 			// aapt resource value: 0x7f060051
 			public const int search_voice_btn = 2131099729;
@@ -1792,8 +1804,8 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060014
 			public const int showTitle = 2131099668;
 			
-			// aapt resource value: 0x7f060054
-			public const int similar_recyclerView = 2131099732;
+			// aapt resource value: 0x7f060055
+			public const int similar_recyclerView = 2131099733;
 			
 			// aapt resource value: 0x7f06002f
 			public const int spacer = 2131099695;
@@ -1810,8 +1822,8 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06001b
 			public const int src_over = 2131099675;
 			
-			// aapt resource value: 0x7f06005e
-			public const int status_bar_latest_event_content = 2131099742;
+			// aapt resource value: 0x7f060060
+			public const int status_bar_latest_event_content = 2131099744;
 			
 			// aapt resource value: 0x7f06004f
 			public const int submit_area = 2131099727;
@@ -1819,17 +1831,17 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f06000e
 			public const int tabMode = 2131099662;
 			
-			// aapt resource value: 0x7f060066
-			public const int text = 2131099750;
+			// aapt resource value: 0x7f060068
+			public const int text = 2131099752;
 			
-			// aapt resource value: 0x7f060064
-			public const int text2 = 2131099748;
+			// aapt resource value: 0x7f060066
+			public const int text2 = 2131099750;
 			
 			// aapt resource value: 0x7f060037
 			public const int textSpacerNoButtons = 2131099703;
 			
-			// aapt resource value: 0x7f060062
-			public const int time = 2131099746;
+			// aapt resource value: 0x7f060064
+			public const int time = 2131099748;
 			
 			// aapt resource value: 0x7f06002d
 			public const int title = 2131099693;
@@ -1837,14 +1849,14 @@ namespace MovieExplorer.Droid
 			// aapt resource value: 0x7f060032
 			public const int title_template = 2131099698;
 			
-			// aapt resource value: 0x7f060056
-			public const int toolbar = 2131099734;
+			// aapt resource value: 0x7f060058
+			public const int toolbar = 2131099736;
 			
 			// aapt resource value: 0x7f060031
 			public const int topPanel = 2131099697;
 			
-			// aapt resource value: 0x7f060058
-			public const int topRated_recyclerView = 2131099736;
+			// aapt resource value: 0x7f06005a
+			public const int topRated_recyclerView = 2131099738;
 			
 			// aapt resource value: 0x7f060009
 			public const int up = 2131099657;
@@ -2049,6 +2061,9 @@ namespace MovieExplorer.Droid
 			
 			// aapt resource value: 0x7f0c0000
 			public const int main = 2131492864;
+			
+			// aapt resource value: 0x7f0c0001
+			public const int search = 2131492865;
 			
 			static Menu()
 			{

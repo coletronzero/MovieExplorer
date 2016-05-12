@@ -4,11 +4,12 @@ using Android.OS;
 using MovieExplorer.Client.ViewModels;
 using Android.Support.V7.Widget;
 using MovieExplorer.Droid.Controls;
-using MvvmCross.Droid.Views;
 using Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Support.V4.View;
 using Java.Interop;
+using Android.Support.V4.Widget;
+using System.Threading.Tasks;
 
 namespace MovieExplorer.Droid.Views
 {
@@ -25,6 +26,7 @@ namespace MovieExplorer.Droid.Views
         private RecyclerView _nowPlayingRecyclerView;
 
         private SearchView _searchView;
+        private IMenuItem _searchMenuItem;
 
         protected override async void OnCreate(Bundle bundle)
         {
@@ -39,10 +41,8 @@ namespace MovieExplorer.Droid.Views
             }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-
             //Toolbar will now take on default actionbar characteristics
             SetSupportActionBar(toolbar);
-
             SupportActionBar.Title = "Movie Explorer";
 
             // Create a reference to our RecyclerView and set the layout manager;
@@ -78,15 +78,23 @@ namespace MovieExplorer.Droid.Views
             MovieRecyclerViewAdapter nowPlayingAdapter = new MovieRecyclerViewAdapter(nowPlayingMovies, this.Resources);
             nowPlayingAdapter.ItemClick += OnNowPlayingItemClick;
             _nowPlayingRecyclerView.SetAdapter(nowPlayingAdapter);
+
+            
+            var refresher = FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+            refresher.Refresh += async delegate {
+                // TODO: Refresh content
+                await Task.Delay(2000);
+                refresher.Refreshing = false;
+            };
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.main, menu);
 
-            var item = menu.FindItem(Resource.Id.action_search);
+            _searchMenuItem = menu.FindItem(Resource.Id.main_menu_action_search);
 
-            var searchView = MenuItemCompat.GetActionView(item);
+            var searchView = MenuItemCompat.GetActionView(_searchMenuItem);
             _searchView = searchView.JavaCast<SearchView>();
 
             _searchView.QueryTextSubmit += _searchView_QueryTextSubmit;
@@ -108,22 +116,25 @@ namespace MovieExplorer.Droid.Views
 
         private void _searchView_QueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
         {
+            _searchView.SetQuery(string.Empty, false);
+            _searchView.ClearFocus();
+            _searchMenuItem.CollapseActionView();
             _viewModel.GoToSearch(e.Query);
         }
 
         private void OnTopRatedItemClick(object sender, int movieId)
         {
-            _viewModel.SelectTopRatedMovie(movieId);
+            _viewModel.SelectMovie(movieId);
         }
 
         private void OnPopularItemClick(object sender, int movieId)
         {
-            _viewModel.SelectPopularMovie(movieId);
+            _viewModel.SelectMovie(movieId);
         }
 
         private void OnNowPlayingItemClick(object sender, int movieId)
         {
-            _viewModel.SelectNowPlayingMovie(movieId);
+            _viewModel.SelectMovie(movieId);
         }
     }
 }
