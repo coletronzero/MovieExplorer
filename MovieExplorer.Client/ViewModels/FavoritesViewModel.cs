@@ -64,9 +64,12 @@ namespace MovieExplorer.Client.ViewModels
             try
             {
                 FavoriteMovies.Clear();
+                // TODO: This is no good, need to implement authentication and retrieve lists the correct way
+                // http://docs.themoviedb.apiary.io/#reference/lists/get
                 foreach (var movieId in FavoriteMovieIdList)
                 {
                     var movieResponse = await _movieClient.GetMovieAsync(movieId);
+
                     if (movieResponse.IsOk)
                     {
                         FavoriteMovies.Add(movieResponse.Body);
