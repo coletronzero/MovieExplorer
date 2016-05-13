@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -16,7 +17,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MovieExplorer.Droid.Views
 {
-    [Activity(Label = "Movie Explorer")]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class DetailActivity : MvxAppCompatActivity
     {
         protected DetailViewModel _viewModel

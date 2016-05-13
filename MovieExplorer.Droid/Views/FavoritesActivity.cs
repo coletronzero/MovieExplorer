@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -12,7 +13,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MovieExplorer.Droid.Views
 {
-    [Activity(Label = "Favorites")]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class FavoritesActivity : MvxAppCompatActivity
     {
         protected FavoritesViewModel _viewModel

@@ -12,10 +12,11 @@ using Android.Support.V4.Widget;
 using Android.Graphics;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform;
+using Android.Content.PM;
 
 namespace MovieExplorer.Droid.Views
 {
-    [Activity(Label = "Movie Explorer")]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : MvxAppCompatActivity
     {
         protected MainViewModel _viewModel

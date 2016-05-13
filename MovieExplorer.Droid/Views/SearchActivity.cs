@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.View;
@@ -14,7 +15,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MovieExplorer.Droid.Views
 {
-    [Activity(Label = "Movie Explorer")]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class SearchActivity : MvxAppCompatActivity
     {
         protected SearchViewModel _viewModel
