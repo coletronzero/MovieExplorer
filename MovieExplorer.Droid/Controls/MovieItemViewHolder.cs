@@ -8,7 +8,7 @@ namespace MovieExplorer.Droid.Controls
     public class MovieItemViewHolder : RecyclerView.ViewHolder
     {
         public ImageView MoviePhoto { get; set; }
-        public TextView MovieName { get; set; }
+        //public TextView MovieName { get; set; }
 
         public MovieItemViewHolder(View itemView, Action<int> listener) : base(itemView)
         {

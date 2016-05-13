@@ -2,9 +2,10 @@
 using MovieExplorer.Client.NavigationParameters;
 using MovieExplorer.Client.Services;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 
 namespace MovieExplorer.Client.ViewModels
@@ -21,11 +22,18 @@ namespace MovieExplorer.Client.ViewModels
 
         public async void Init(SearchQuery parameters)
         {
-            var searchResponse = await _movieClient.SearchMoviesAsync(parameters.Query);
-            if (searchResponse.IsOk)
+            try
             {
-                SearchResults = searchResponse.Body.Results;
-                ShowSearchResultsDelegate?.Invoke();
+                var searchResponse = await _movieClient.SearchMoviesAsync(parameters.Query);
+                if (searchResponse.IsOk)
+                {
+                    SearchResults = searchResponse.Body.Results;
+                    ShowSearchResultsDelegate?.Invoke();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown during SearchViewModel Init", ex);
             }
         }
 
@@ -55,22 +63,25 @@ namespace MovieExplorer.Client.ViewModels
 
         public async void SearchForMovies()
         {
-            SearchResults.Clear();
-            var searchResponse = await _movieClient.SearchMoviesAsync(SearchQuery);
-            if (searchResponse.IsOk)
+            try
             {
-                SearchResults = searchResponse.Body.Results;
-                ShowSearchResultsDelegate?.Invoke();
+                SearchResults.Clear();
+                var searchResponse = await _movieClient.SearchMoviesAsync(SearchQuery);
+                if (searchResponse.IsOk)
+                {
+                    SearchResults = searchResponse.Body.Results;
+                    ShowSearchResultsDelegate?.Invoke();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown during SearchViewModel SearchForMovies", ex);
             }
         }
 
-        public void SelectMovie(int id)
+        public void SelectMovie(int movieId)
         {
-            var movie = SearchResults.Where(x => x.Id == id).FirstOrDefault();
-            if (movie != null)
-            {
-                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movie.Id });
-            }
+            ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movieId });
         }
     }
 }

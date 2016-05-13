@@ -7,6 +7,8 @@ using Android.Views;
 using MovieExplorer.Client.ViewModels;
 using MovieExplorer.Droid.Controls;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using System;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -32,13 +34,13 @@ namespace MovieExplorer.Droid.Views
             }
             catch (Exception ex)
             {
-                var test = ex;
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown Inflating SearchView", ex);
             }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.search_toolbar);
             //Toolbar will now take on default actionbar characteristics
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Movie Explorer";
+            SupportActionBar.Title = "Search";
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 

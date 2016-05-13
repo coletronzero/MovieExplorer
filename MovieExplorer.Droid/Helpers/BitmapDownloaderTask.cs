@@ -12,6 +12,8 @@ using Android.Graphics;
 using System.Net;
 using Android.Media;
 using MovieExplorer.Droid.Controls;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MovieExplorer.Droid.Helpers
 {
@@ -63,9 +65,22 @@ namespace MovieExplorer.Droid.Helpers
                     // Change bitmap only if this process is still associated with it.
                     // This is necessary as views can be reused by Android, and a newer BitmapDownloader instance may have been attached to it.
                     if (this == bitmapDownloaderTask)
-                        imageView.SetImageBitmap(bitmap);
+                    {
+                        imageView.SetImageBitmap(GetResizedBitmap(bitmap, imageView.Width));
+                        //imageView.SetImageBitmap(bitmap);
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// Resize the Bitmap to desired width to reduce memory footprint
+        /// </summary>
+        public Bitmap GetResizedBitmap(Bitmap image, int width)
+        {
+            // (newWidth * orgHeight) / orgWidth
+            int height = (int)(width * image.Height / (double)image.Width);
+            return Bitmap.CreateScaledBitmap(image, width, height, true);
         }
 
         private Bitmap DownloadRemoteImage(string url)
@@ -87,8 +102,9 @@ namespace MovieExplorer.Droid.Helpers
 
                 return BitmapFactory.DecodeStream(inputStream);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown during BitmapDownloaderTask DownloadRemoteImage", ex);
                 return null;
             }
         }

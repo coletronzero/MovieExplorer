@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\MovieSharpException.cs" />
+    <Compile Include="Messages\MovieFavoritedMessage.cs" />
+    <Compile Include="Messages\MovieUnfavoritedMessage.cs" />
     <Compile Include="Models\BaseResponse.cs" />
     <Compile Include="Models\Collection.cs" />
     <Compile Include="Models\CollectionImages.cs" />
@@ -75,6 +77,10 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.File.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http">

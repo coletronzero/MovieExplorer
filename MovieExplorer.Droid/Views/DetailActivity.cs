@@ -4,10 +4,13 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using MovieExplorer.Client;
 using MovieExplorer.Client.ViewModels;
 using MovieExplorer.Droid.Controls;
 using MovieExplorer.Droid.Helpers;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using System;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -33,13 +36,13 @@ namespace MovieExplorer.Droid.Views
             }
             catch (Exception ex)
             {
-                var test = ex;
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown Inflating DetailView", ex);
             }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.detail_toolbar);
             //Toolbar will now take on default actionbar characteristics
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Movie Explorer";
+            SupportActionBar.Title = "Detail";
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
@@ -68,7 +71,7 @@ namespace MovieExplorer.Droid.Views
                     var task = new BitmapDownloaderTask(_movieImage);
                     _movieImage.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
                     _movieImage.SetMinimumHeight(300);
-                    task.Execute("http://image.tmdb.org/t/p/w500" + _viewModel.SelectedMovie.PosterPath);
+                    task.Execute(App.IMAGE_PREFIX + _viewModel.SelectedMovie.PosterPath);
                 }
 
                 if (_similarRecycler != null)

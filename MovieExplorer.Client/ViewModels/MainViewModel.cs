@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using MvvmCross.Platform.Platform;
+using MvvmCross.Platform;
 
 namespace MovieExplorer.Client.ViewModels
 {
@@ -22,45 +24,63 @@ namespace MovieExplorer.Client.ViewModels
             ShowViewModel<SearchViewModel>(new SearchQuery { Query = query });
         }
 
-        private List<MovieDto> _topRatedMovies;
-        public async Task<List<MovieDto>> GetTopRatedMoviesAsync()
+        public Action RefreshTopRatedMovies { get; set; }
+        public Action RefreshPopularMovies { get; set; }
+        public Action RefreshNowPlayingMovies { get; set; }
+
+        public async Task RefreshAllContent()
         {
-            _topRatedMovies = new List<MovieDto>();
-            var topRatedMoviesResponse = await _movieClient.GetTopRatedMoviesAsync();
-            if (topRatedMoviesResponse.IsOk)
+            try
             {
-                _topRatedMovies = topRatedMoviesResponse.Body.Results;
+                var topRatedMoviesResponse = await _movieClient.GetTopRatedMoviesAsync();
+                if (topRatedMoviesResponse.IsOk)
+                {
+                    TopRatedMovies = topRatedMoviesResponse.Body.Results;
+                    RefreshTopRatedMovies?.Invoke();
+                }
+                var popularMoviesResponse = await _movieClient.GetPopularMoviesAsync();
+                if (popularMoviesResponse.IsOk)
+                {
+                    PopularMovies = popularMoviesResponse.Body.Results;
+                    RefreshPopularMovies?.Invoke();
+                }
+                var nowPlayingMoviesResponse = await _movieClient.GetNowPlayingMoviesAsync();
+                if (nowPlayingMoviesResponse.IsOk)
+                {
+                    NowPlayingMovies = nowPlayingMoviesResponse.Body.Results;
+                    RefreshNowPlayingMovies?.Invoke();
+                }
             }
-            return _topRatedMovies;
+            catch (Exception ex)
+            {
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown during MainViewModel RefreshAllContent", ex);
+            }
+        }
+
+        private List<MovieDto> _topRatedMovies;
+        public List<MovieDto> TopRatedMovies
+        {
+            get { return _topRatedMovies; }
+            set { SetProperty(ref _topRatedMovies, value); }
         }
 
         private List<MovieDto> _popularMovies;
-        public async Task<List<MovieDto>> GetPopularMoviesAsync()
+        public List<MovieDto> PopularMovies
         {
-            _popularMovies = new List<MovieDto>();
-            var popularMoviesResponse = await _movieClient.GetPopularMoviesAsync();
-            if (popularMoviesResponse.IsOk)
-            {
-                _popularMovies = popularMoviesResponse.Body.Results;
-            }
-            return _popularMovies;
+            get { return _popularMovies; }
+            set { SetProperty(ref _popularMovies, value); }
         }
 
         private List<MovieDto> _nowPlayingMovies;
-        public async Task<List<MovieDto>> GetNowPlayingMoviesAsync()
+        public List<MovieDto> NowPlayingMovies
         {
-            _nowPlayingMovies = new List<MovieDto>();
-            var nowPlayingMoviesResponse = await _movieClient.GetNowPlayingMoviesAsync();
-            if (nowPlayingMoviesResponse.IsOk)
-            {
-                _nowPlayingMovies = nowPlayingMoviesResponse.Body.Results;
-            }
-            return _nowPlayingMovies;
+            get { return _nowPlayingMovies; }
+            set { SetProperty(ref _nowPlayingMovies, value); }
         }
 
         public void SelectMovie(int movieId)
         {
-                ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movieId });
+            ShowViewModel<DetailViewModel>(new SelectedMovie { MovieId = movieId });
         }
 
         public bool ShowFavorites()

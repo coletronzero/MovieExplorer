@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 using System.Net;
 using MovieExplorer.Droid.Helpers;
 using MovieExplorer.Client.Models;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
+using MovieExplorer.Client;
 
 namespace MovieExplorer.Droid.Controls
 {
     public class MovieRecyclerViewAdapter : RecyclerView.Adapter
     {
+        public static int ScreenWdith { get; set; }
+
         // Create an Event so that our our clients can act when a user clicks
         // on each individual item.
         public event EventHandler<int> ItemClick;
@@ -79,16 +84,18 @@ namespace MovieExplorer.Droid.Controls
                 var task = new BitmapDownloaderTask(viewHolder.MoviePhoto);
                 viewHolder.MoviePhoto.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
                 viewHolder.MoviePhoto.SetMinimumHeight(300);
-                task.Execute("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath);
+                task.Execute(App.IMAGE_PREFIX + currentMovie.PosterPath);
             }
             else
             {
                 var viewHolder = holder as MovieItemViewHolder;
 
+                int tempWidth = (int)(ScreenWdith / 3);
+
                 var task = new BitmapDownloaderTask(viewHolder.MoviePhoto);
                 viewHolder.MoviePhoto.SetImageDrawable(new DownloadedDrawable(task, Color.Gray));
-                viewHolder.MoviePhoto.SetMinimumHeight(300);
-                task.Execute("http://image.tmdb.org/t/p/w500" + currentMovie.PosterPath);
+                viewHolder.MoviePhoto.SetMinimumWidth(tempWidth);
+                task.Execute(App.IMAGE_PREFIX + currentMovie.PosterPath);
             }
         }
 
@@ -109,7 +116,7 @@ namespace MovieExplorer.Droid.Controls
             }
             catch (Exception ex)
             {
-                var test = ex;
+                Mvx.Trace(MvxTraceLevel.Error, "Exception was thrown during MovieRecyclerViewAdapter GetImageBitmapFromUrl", ex);
             }
 
             return imageBitmap;
